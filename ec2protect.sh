@@ -35,3 +35,20 @@ sleep 1m
 aws ec2 terminate-instances --instance-ids $INSTANCE_ID
 
 echo "script is completed" >> /home/deploy/scriptstatus.txt
+
+
+
+######################
+
+# Loop through all EC2 instances and enable termination protection
+##for I in $(aws ec2 describe-instances --query 'Reservations[].Instances[].[InstanceId]' --output text); do aws ec2 modify-instance-attribute --disable-api-termination --instance-id $I; done
+for I in $(aws ec2 describe-instances --query 'Reservations[].Instances[].[InstanceId]' --output text); do aws ec2 describe-instance-attribute --instance-id $I --attribute disableApiTermination ; done > new1.txt
+
+# Loop through all EC2 instances and disable termination protection
+##for I in $(aws ec2 describe-instances --query 'Reservations[].Instances[].[InstanceId]' --output text); do aws ec2 modify-instance-attribute --no-disable-api-termination --instance-id $I;done
+
+
+#aws iam list-users | grep -i '"UserName":' | awk '{print $2}'| cut -d '"' -f2
+#aws ec2 describe-images --owners $user --output json | jq '.Images[]' | grep -i '"Name":' | wc -l
+
+for I in $(aws iam list-users | grep -i '"UserName":' | awk '{print $2}'| cut -d '"' -f2 ); do aws ec2 describe-images --owners $user --output json | jq '.Images[]' | grep -i '"Name":' | wc -l; done > new1.txt

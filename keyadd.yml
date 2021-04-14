@@ -1,0 +1,7 @@
+---
+- hosts: all
+  tasks:
+  - name: put pubkey
+    lineinfile:
+      path: "/home/deploy/.ssh/authorized_keys"
+      line: "{{ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDkcLEFWmIwjeF5TZrVpiSzw+jrWuEM94wvBBV5VbttEhCSRqZsIeSm/hhKnU9czdVFInRDIGqlY+ubCnjw3Hzbal1WzKkC/mNmOET69hqYLmG24G583NyG9nItzmNn0207n/NqMgU3MbuM60fLfFxJC/hB7uYIYk9EoluyRgx+hGzAGTC+Rdv3y1SwUScXcTbTs51AjqjNF+81grjmk7O9h6Up6cUfLzhOqiix0XnTM40CqZ8ELMJAUh+y8qis/SsZavSeB6d8bxgYTBZWasK2wQ4/6j+idQN9z06dYPLKPDAHWjxFBz0jx2KnGYA7+r test }}"

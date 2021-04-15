@@ -1,0 +1,19 @@
+JMETER Installation
+	
+java --version
+If you didn’t install Java before then you can follow the steps from the following tutorial link to install Java before starting the next step.
+	a.) sudo apt-get purge openjdk-\*
+	b.) sudo apt install openjdk-9-jre
+	C. ) sudo apt install openjdk-9-jdk
+	d.) java -verson
+Go to the URL location to download the latest version of JMeter
+    Click on ‘Apache-JMeter-5.0.zip’ link to download the binary zip file of JMeter
+By default, the file will be downloaded in the Downloads folder. Open the folder, right click on the zip file and click on Extract Here from the pop-up menu
+ Go to folder  cd Downloads/apache-jmeter-5.0/bin/
+./jmeter
+
+Create a test plan
+
+
+
+https://www.youtube.com/watch?v=8loLHbhfyh0

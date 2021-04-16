@@ -52,3 +52,18 @@ for I in $(aws ec2 describe-instances --query 'Reservations[].Instances[].[Insta
 #aws ec2 describe-images --owners $user --output json | jq '.Images[]' | grep -i '"Name":' | wc -l
 
 for I in $(aws iam list-users | grep -i '"UserName":' | awk '{print $2}'| cut -d '"' -f2 ); do aws ec2 describe-images --owners $user --output json | jq '.Images[]' | grep -i '"Name":' | wc -l; done > new1.txt
+
+
+########################
+
+Put in user data...
+
+su -s /bin/bash - user /home/user/file.sh
+su -s /bin/bash - user /home/user/delayed_job_startup.sh queue_name 15 (number of worker)
+
+
+cd /home/user/imagerepo/shared/tmp/pids
+rm -rf delayed_*.pid
+cd /home/user/imagerepo/current/
+RAILS_ENV=production bin/delayed_job --queue=$1 start -n $2
+
